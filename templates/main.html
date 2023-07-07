@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h1 {
+        font-size: 120%;
+        font-weight: bold;
+      }
+    </style>
+
+
+    <title>IOT IDEATIVA</title>
+    
+    <link rel="website icon" type="png"
+    href="static/ideativa.png">
+
+  </head>
+  <body>
+  <img src="{{ url_for('static', filename='ideativa.png') }}" style="width:150px">
+  <h1>IoT Project</h1>
+  
+    {% block content %}{% endblock %}
+
+  </body>
+</html>

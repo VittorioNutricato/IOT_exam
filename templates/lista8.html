@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<meta http-equiv="refresh" content="5">
+
+  <style>
+  table, td, th {
+    border: 1px solid black;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 70%;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  caption {
+    font-size: 150%;
+    font-style: italic;
+    font-weight: bold;
+  }
+  </style>
+
+  <br><br>
+  <img src="{{ url_for('static', filename='cobot8.jpg') }}" style="width:150px">
+  <br><br><br><br>
+
+
+  <table id="Robot">
+    <caption> 
+      Robot 8
+      <br><br>
+    </caption>
+
+    <th> Id </th>
+    <th> Robot</th>
+    <th> Timestamp (YYYY/MM/DD HH/MM/SS)</th>
+    <th> Temperature (°C)</th>
+    <th> Pressure (bar)</th>
+    <th> Weight_1 (g)</th>
+    <th> Weight_2 (g)</th>
+    <th> Weight_3 (g)</th>
+    <th> Enable </th>
+    <th> Working_status </th>
+    <th> Lavorazione </th>
+
+    
+    {% for el in lista %}
+    <tr>
+      <td>{{el.id}}</td>
+      <td>{{el.robot}}</td>
+      <td>{{el.timestamp}}</td>
+      <td>{{el.temperature}}</td>
+      <td>{{el.pressure}}</td>
+      <td>{{el.weight_1}}</td>
+      <td>{{el.weight_2}}</td>
+      <td>{{el.weight_3}}</td>
+      <td data-value="el.enable">{{el.enable}}</td>
+      <td data-value="el.working_status">{{el.working_status}}</td>
+      <td>{{el.lavorazione}}</td>
+    </tr>
+     {% endfor %}
+
+  </table>
+
+  <script>
+
+    const table = document.getElementById("Robot");
+    const rows = table.getElementsByTagName("tr");
+  
+    for (let i = 0; i < rows.length; i++) {
+      const cells = rows[i].getElementsByTagName("td");
+      for (let j = 0; j < cells.length; j++) {
+        const cellValue = cells[j].textContent;
+        if (cellValue === "True") {
+          cells[j].style.backgroundColor = "green";
+        }
+        if (cellValue === "False"){
+          cells[j].style.backgroundColor = "red";
+        }
+        if (j===10){
+          if (cellValue !== ""){
+            cells[j].style.backgroundColor = "yellow";
+          }
+        }
+      }
+    }
+  </script>
+  
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+  <style>
+  table, td, th {
+    border: 1px solid black;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 70%;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  caption {
+    font-size: 150%;
+    font-style: italic;
+    font-weight: bold;
+  }
+  </style>
+
+
+<title>Scegli prodotto</title>
+</head>
+<body>
+	<br><br>
+	<h1>Inserire il prodotto che sui vuole produrre !</h1>
+	<input type="text" id="input_string" name="input_string">
+	<button onclick="eseguiScript()">Invia Ordine</button>
+	<br><br>
+	<div id="risultato"></div>
+
+	<script>
+		function eseguiScript() {
+      var input_string = document.getElementById("input_string").value;
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("risultato").innerHTML = this.responseText;
+				}
+			};
+			xhr.open("GET", "esegui_script?stringa="+ input_string, true);
+			xhr.send();
+		}
+	</script>
+
+	</body>
+
+{% endblock %}
